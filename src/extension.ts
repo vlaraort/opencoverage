@@ -7,7 +7,7 @@ let myStatusBarItem: vscode.StatusBarItem;
 export function activate({ subscriptions }: vscode.ExtensionContext) {
   // register a command that is invoked when the status bar
   // item is selected
-  const myCommandId = "opencoverage.openBrowser";
+  const myCommandId = "openCoverage.openBrowser";
   subscriptions.push(
     vscode.commands.registerCommand(myCommandId, () => {
 		openCoverage();
@@ -50,7 +50,8 @@ async function checkFileExistence(uri: vscode.Uri): Promise<Boolean> {
 function getFileUri(): vscode.Uri | undefined {
   if (vscode.workspace.workspaceFolders !== undefined) {
     const workspaceFolderUri = vscode.workspace.workspaceFolders[0].uri;
-    const relativeFilePath = "coverage/lcov-report/index.html";
+	// Extract the path from the configuration (default: coverage/lcov-report/index.html)
+    const relativeFilePath = vscode.workspace.getConfiguration('openCoverage').coverageFilePath;
     const fileUri = vscode.Uri.joinPath(workspaceFolderUri, relativeFilePath);
     return fileUri;
   }
@@ -63,7 +64,7 @@ async function openCoverage(): Promise<void> {
 	if(exists) {
 	  vscode.env.openExternal(uri);
 	} else {
-	  vscode.window.showInformationMessage('No coverage file found')
+	  vscode.window.showInformationMessage('No coverage file found');
 	}  
   } else {
 	vscode.window.showInformationMessage('You need to be inside a VSCode Workspace to use this plugin');
