@@ -4,7 +4,7 @@ VSCode extension, which adds a button to open code coverage HTML files, in your 
 
 # Usage
 
-1 - Open a project that has a coverage report.
-2 - (Optional): In your settings, under Open Coverage, change your HTML path if it's different to th default `coverage/lcov-report/index.html`
-3 - Click in the `Open Coverage` button in the Status Bar (AKA footer)
-4 - Enjoy!
+1. Open a project that has a coverage report.
+2. (Optional): In your settings, under Open Coverage, change your HTML path if it's different to th default `coverage/lcov-report/index.html`
+3. Click in the `Open Coverage` button in the Status Bar (AKA footer)
+4. Enjoy!
