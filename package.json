@@ -5,9 +5,10 @@
   "publisher": "vlaraort",
   "license": "MIT",
   "version": "0.0.2",
+  "icon": "public/logo.png",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vlaraort/opencoverage.git"
+    "url": "https://github.com/vlaraort/opencoverage.git"
   },
   "engines": {
     "vscode": "^1.46.0"
@@ -46,7 +47,8 @@
     "test-watch": "tsc -watch -p ./",
     "pretest": "npm run test-compile && npm run lint",
     "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+    "test": "node ./out/test/runTest.js",
+    "release": "standard-version"
   },
   "devDependencies": {
     "@types/glob": "^7.1.3",
