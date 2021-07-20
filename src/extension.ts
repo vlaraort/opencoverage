@@ -53,8 +53,14 @@ function getFileUri(): vscode.Uri | undefined {
 	// Extract the path from the configuration (default: coverage/lcov-report/index.html)
     const relativeFilePath = vscode.workspace.getConfiguration('openCoverage').coverageFilePath;
     const fileUri = vscode.Uri.joinPath(workspaceFolderUri, relativeFilePath);
+
     return fileUri;
   }
+}
+
+async function openBrowser(url: string): Promise<void> {
+  const open = require('open');
+  await open(url);
 }
 
 async function openCoverage(): Promise<void> {
@@ -62,7 +68,9 @@ async function openCoverage(): Promise<void> {
   if(uri) {
 	const exists = await checkFileExistence(uri);
 	if(exists) {
-	  vscode.env.openExternal(uri);
+    // Currently doesn't support file uris
+	  //vscode.env.openExternal(callableUri);
+    openBrowser(uri.toString());
 	} else {
 	  vscode.window.showInformationMessage('No coverage file found');
 	}  
